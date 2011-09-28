@@ -1,0 +1,20 @@
+= Spent time required
+
+A Redmine plugin to require adding spent time
+
+== Usage
+
+After setup it will automatically start to require issue spent time.
+
+== Installation and Setup
+
+1. Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins 
+2. Restart your Redmine web servers (e.g. mongrel, thin, mod_rails)
+3. Go to Administartion -> Plugins, find this plugin and click Configure. Then set issue status ids in the transition of which you want to require spent time.
+
+= Requrements
+* Redmine 1.2.1 or later (may work on earlier verisons, but not tested for it)
+
+= Author
+Max Prokopiev
+© 2011 TeamRocketScience. http://trs.io
