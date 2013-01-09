@@ -1,10 +1,17 @@
 require 'redmine'
 require File.dirname(__FILE__) + '/lib/issues_controller_patch.rb'
 
-require 'dispatcher'
-Dispatcher.to_prepare :redmine_spent_time_required do
-  require_dependency 'issues_controller'
-  IssuesController.send(:include, RedmineSpentTimeRequired::Patches::IssuesControllerPatch)
+if Rails::VERSION::MAJOR >= 3
+  ActionDispatch::Callbacks.to_prepare do
+    require_dependency 'issues_controller'
+    IssuesController.send(:include, RedmineSpentTimeRequired::Patches::IssuesControllerPatch)
+  end
+else
+  require 'dispatcher'
+  Dispatcher.to_prepare do
+    require_dependency 'issues_controller'
+    IssuesController.send(:include, RedmineSpentTimeRequired::Patches::IssuesControllerPatch)
+  end
 end
 
 Redmine::Plugin.register :redmine_spent_time_required do
