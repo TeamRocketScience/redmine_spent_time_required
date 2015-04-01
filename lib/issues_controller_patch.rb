@@ -23,7 +23,7 @@ module RedmineSpentTimeRequired
             find_issue
             update_issue_from_params
             render(:action => 'edit') and return
-          elsif ((params[:time_entry][:comment] == "") && need_comment
+          elsif ((params[:time_entry][:comment] == "") && need_comment)
             flash[:error] = "Comment required"
             find_issue
             update_issue_from_params
