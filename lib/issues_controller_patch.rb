@@ -22,14 +22,16 @@ module RedmineSpentTimeRequired
             update_without_check_spent_time
             return
           end
-          if (params[:time_entry][:hours] == "")
+          find_issue
+          params[:time_entry][:hours].sub! ',', '.'
+          spent_hours    = @issue.time_entries.map { |te| te.hours }.sum 
+          entered_hourse = params[:time_entry][:hours].to_f
+          if ((entered_hours + spent_hours) == 0.0)
             flash[:error] = "Spent time required"
-            find_issue
             update_issue_from_params
             render(:action => 'edit') and return
-          elsif ((params[:time_entry][:comments] == "") && need_comment)
+          elsif ((entered_hours > 0.0) && (params[:time_entry][:comments] == "") && need_comment)
             flash[:error] = "Comment required"
-            find_issue
             update_issue_from_params
             render(:action => 'edit') and return
           else
