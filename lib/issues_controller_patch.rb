@@ -25,7 +25,7 @@ module RedmineSpentTimeRequired
           find_issue
           params[:time_entry][:hours].sub! ',', '.'
           spent_hours    = @issue.time_entries.map { |te| te.hours }.sum 
-          entered_hourse = params[:time_entry][:hours].to_f
+          entered_hours  = params[:time_entry][:hours].to_f
           if ((entered_hours + spent_hours) == 0.0)
             flash[:error] = "Spent time required"
             update_issue_from_params
