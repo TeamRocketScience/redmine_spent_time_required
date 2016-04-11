@@ -2,3 +2,7 @@
   <label for="settings_statuses">Status IDs</label>
   <%= text_field_tag 'settings[statuses]', @settings['statuses'] %>
 </p>
+<p>
+  <label for="settings_need_comment">Require comment on spent time</label>
+  <%= check_box_tag 'settings[need_comment]', '1', @settings['need_comment'] %>
+</p>
