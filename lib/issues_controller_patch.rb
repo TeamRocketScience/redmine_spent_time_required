@@ -37,7 +37,7 @@ module RedmineSpentTimeRequired
             flash[:error] = "Spent time required"
             return false
           end
-          if params.include? :time_entry && params[:time_entry][:comments] == "" && need_comment
+          if params.include? :time_entry and params[:time_entry][:comments] == "" and need_comment
             flash[:error] = "Comment required"
             return false
           end
